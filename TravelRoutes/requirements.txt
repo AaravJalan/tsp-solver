@@ -1,0 +1,17 @@
+# RUN: pip install -r requirements.txt
+
+# Libraries for data manipulation and visualization
+matplotlib==3.4.3
+numpy==1.26.4
+tqdm==4.66.4
+tkinter==8.6.11
+
+# Utility libraries for output formatting
+prettytable==2.2.0
+colorama==0.4.4
+
+# Parsing command-line arguments
+argparse==1.4.0
+
+# Library for graph manipulation
+networkx==2.6.3
