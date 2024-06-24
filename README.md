@@ -68,12 +68,12 @@ Error checks different inputs:
 - Layout Check: Ensures the layout is between 1 - 4.
 
 ### Layouts
-Contains the code for 4 layouts, which arrange the nodes neatly:
+Contains the code for 5 layouts, which arrange the nodes neatly:
 - Random (with seed)
 - Circular
 - Square
 - Hexagonal
-Also contains the mechanism to select a layout based on user input.
+- Manual Layout based on user input.
 
 ## DataSample
 ### Visualization
