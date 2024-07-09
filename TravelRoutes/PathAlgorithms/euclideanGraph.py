@@ -26,7 +26,7 @@ def printSolution(matrix, n):
     print(table)
     print(Style.RESET_ALL)
 
-def adjacency_matrix(n, edges):
+def adjacencyMatrix(n, edges):
     matrix = [[0] * n for _ in range(n)]
 
     # Update matrix based on edges
@@ -88,7 +88,7 @@ def euclideanGraph(n, layout, seed, routes, file, random):
             adj_matrix = np.round(adj_matrix, 2)
             printSolution(adj_matrix, n)
 
-        matrix = adjacency_matrix(n, G.edges(data=True))
+        matrix = adjacencyMatrix(n, G.edges(data=True))
         return G, pos, matrix
     
     else:
@@ -113,5 +113,5 @@ def euclideanGraph(n, layout, seed, routes, file, random):
 
         # Create a layout based on distances
         pos = {node: np.array(nodes[node]) for node in G.nodes()}
-        matrix = adjacency_matrix(n, G.edges(data=True))
+        matrix = adjacencyMatrix(n, G.edges(data=True))
         return G, pos, matrix

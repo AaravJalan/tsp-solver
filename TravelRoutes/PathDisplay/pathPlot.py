@@ -47,12 +47,12 @@ def travelPaths(graphType, n, mode, sourceNode, destNode, layout, seed, routes, 
     # Running Optimising Algorithm to Find a Path To Travel All Nodes & Back
     elif mode == 3: 
         if solver == 1:
-            edgeList = g.nearest_neighbour(sourceNode, routes, opt)
+            edgeList = g.nearestNeighbour(sourceNode, routes, opt)
         elif solver == 2:
-            edgeList = g.cheapest_insertion(sourceNode, opt)
+            edgeList = g.cheapestInsertion(sourceNode, opt)
         elif solver == 0:
-            g.nearest_neighbour(sourceNode, routes, opt)
-            g.cheapest_insertion(sourceNode, opt)
+            g.nearestNeighbour(sourceNode, routes, opt)
+            g.cheapestInsertion(sourceNode, opt)
             edgeList = []
     
     edgeLabels = nx.get_edge_attributes(G, "weight")
@@ -96,13 +96,13 @@ def travelPaths(graphType, n, mode, sourceNode, destNode, layout, seed, routes, 
 
         # Node Labels
         custom, node_labels = customLabels(n)
-        if custom == True:
+        if custom:
             nx.draw_networkx_labels(G, pos, labels=node_labels, font_size=15,font_family="tahoma")
         else:
             nx.draw_networkx_labels(G, pos, font_size=15, font_weight="bold", font_family="sans-serif")
 
         # Edge Weight Labels
-        nx.draw_networkx_edge_labels(G, pos, edgeLabels)
+        nx.draw_networkx_edge_labels(G, pos, edgeLabels, font_size=10)
 
         # Plotting Graph
         plt.gca().margins(0.06)

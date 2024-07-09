@@ -1,16 +1,17 @@
 import tkinter as tk
 from tkinter import ttk, messagebox
-from HelperFunctions.helper import clear_terminal
+from HelperFunctions.helper import clearTerminal
 from PathDisplay.pathPlot import travelPaths
+
 
 class TSPApp:
     def __init__(self, root):
         self.root = root
         self.root.title("TSP Solver")
 
-        self.create_widgets()
+        self.createWidgets()
 
-    def create_widgets(self):
+    def createWidgets(self):
         frame = ttk.Frame(self.root, padding=10)
         frame.grid(row=0, column=0, sticky=(tk.W, tk.E, tk.N, tk.S))
 
@@ -25,7 +26,7 @@ class TSPApp:
         # Number of Nodes
         ttk.Label(frame, text="Number of Nodes:").grid(row=1, column=0, sticky=tk.W)
         self.nodes_var = tk.IntVar(value=10)
-        self.nodes_spinbox = ttk.Spinbox(frame, from_=2, to=10000, textvariable=self.nodes_var, command=self.update_source_spinbox)
+        self.nodes_spinbox = ttk.Spinbox(frame, from_=2, to=10000, textvariable=self.nodes_var, command=self.updateSourceSpinbox)
         self.nodes_spinbox.grid(row=1, column=1, sticky=tk.E)
 
         # Routes
@@ -66,7 +67,7 @@ class TSPApp:
         # File Option
         self.file_label = ttk.Label(frame, text="File:")
         self.file_var = tk.StringVar()
-        file_options = ["1: C1k.1", "2: E1k.1", "3: Test"]
+        file_options = ["1: C1k.1", "2: E1k.1", "3: Test", "4: Mumbai"]
         self.file_combobox = ttk.Combobox(frame, values=file_options, textvariable=self.file_var, state="readonly")
 
         # Random Checkbox
@@ -99,16 +100,16 @@ class TSPApp:
         self.seed_spinbox.grid(row=11, column=1, sticky=tk.E)
 
         # Start Button
-        tk.Button(frame, text="Start", command=self.start_algorithm, bg='green', activebackground='blue').grid(row=12, column=0, columnspan=2, sticky=(tk.W, tk.E))
+        tk.Button(frame, text="Start", command=self.startAlgorithm, bg='green', activebackground='blue').grid(row=12, column=0, columnspan=2, sticky=(tk.W, tk.E))
     
-        self.graph_combobox.bind("<<ComboboxSelected>>", self.update_graph_visibility)
-        self.mode_combobox.bind("<<ComboboxSelected>>", self.update_mode_visibility)
-        self.layout_combobox.bind("<<ComboboxSelected>>", self.update_file_combobox_visibility)
+        self.graph_combobox.bind("<<ComboboxSelected>>", self.updateGraphVisibility)
+        self.mode_combobox.bind("<<ComboboxSelected>>", self.updateModeVisibility)
+        self.layout_combobox.bind("<<ComboboxSelected>>", self.updateFileComboboxVisibility)
         
-    def update_source_spinbox(self):
+    def updateSourceSpinbox(self):
         self.source_spinbox.config(to=self.nodes_var.get()-1)
 
-    def update_mode_visibility(self, event):
+    def updateModeVisibility(self, event):
         if self.mode_var.get().startswith("2:"):
             self.dest_label.grid(row=5, column=0, sticky=tk.W)
             self.dest_spinbox.grid(row=5, column=1, sticky=tk.E)
@@ -123,7 +124,7 @@ class TSPApp:
             self.opt_checkbutton.grid(row=10, column=1, columnspan=2, sticky=tk.W)
             self.opt_label.grid(row=10, column=0, columnspan=2, sticky=tk.W)
             
-    def update_graph_visibility(self, event):
+    def updateGraphVisibility(self, event):
         if self.graph_var.get().startswith("2:"):  # Directed
             self.mode_combobox.config(values=["1: One-to-All", "2: Dijkstra"])
             if self.mode_var.get().startswith("3:"):
@@ -142,9 +143,9 @@ class TSPApp:
         else:
             self.layout_combobox.config(values=["1: Random", "2: Circular", "3: Square", "4: Hex", "5: File Input"])
         
-        self.update_file_combobox_visibility(None)  # Ensure layout update reflects file visibility changes
+        self.updateFileComboboxVisibility(None)  # Ensure layout update reflects file visibility changes
 
-    def update_file_combobox_visibility(self, event):
+    def updateFileComboboxVisibility(self, event):
         if self.layout_var.get().startswith("5:"):
             self.file_label.grid(row=7, column=0, sticky=tk.W)
             self.file_combobox.grid(row=7, column=1, sticky=tk.E)
@@ -157,8 +158,8 @@ class TSPApp:
             self.rand_checkbutton.grid_forget()
             self.rand_label.grid_forget()
 
-    def start_algorithm(self):
-        clear_terminal()
+    def startAlgorithm(self):
+        clearTerminal()
         try:
             graphType = int(self.graph_var.get()[0])
             n = self.nodes_var.get()

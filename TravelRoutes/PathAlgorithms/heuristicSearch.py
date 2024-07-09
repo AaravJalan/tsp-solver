@@ -90,7 +90,7 @@ class Graph():
         self.src = nearest
 
     # Function to Find Paths to All Nodes and Back
-    def nearest_neighbour(self, src, routes, opt):
+    def nearestNeighbour(self, src, routes, opt):
         source = self.src = src
         self.visited = [0] * self.V
         self.visitedEdges = []
@@ -104,7 +104,6 @@ class Graph():
             while min(self.visited) == 0:
                 self.iterate(0)
                 pbar.update(1)
-
         path = self.path
         end_time = time.time()
         print(f"NN took {end_time - start_time:.4f} seconds")
@@ -124,7 +123,7 @@ class Graph():
     
         return self.visitedEdges
 
-    def cheapest_insertion(self, source, opt):
+    def cheapestInsertion(self, source, opt):
         n = len(self.graph)
         unvisited = set(range(n))
         unvisited.remove(source)

@@ -10,8 +10,5 @@ tkinter==8.6.11
 prettytable==2.2.0
 colorama==0.4.4
 
-# Parsing command-line arguments
-argparse==1.4.0
-
 # Library for graph manipulation
 networkx==2.6.3

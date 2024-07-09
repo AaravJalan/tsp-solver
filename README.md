@@ -1,5 +1,5 @@
 # TSP Solver
-The TSP Solver is an algorithm used to investigate and find estimations to the travelling salesman problem, which involves travelling edges to reach from one node to another.
+The TSP Solver is an application which uses graph-search algorithms to investigate and find estimations to the Travelling Salesman Problem (TSP), which involves traversing edges to reach from one node to another.
 
 The file structure for this project is explained below.
 
@@ -14,8 +14,6 @@ The file structure for this project is explained below.
 
 ## Main
 - An alternative to the TSP Solver, which requires user values to be inputted into the terminal.
-- The advantage of this file is access to command line arguments. An example is below:
- ```python main.py -n 9 -g 2 -l 2 -m 1 -s 1 -d 7 -r 2```
 
 ## Path Algorithms
 All files contain the backend/logical program that calculates and determines solutions.
@@ -26,11 +24,11 @@ All files contain the backend/logical program that calculates and determines sol
 
 ### Heuristic Search
 Contains the logic code for:
-- Dijkstra's Greedy Algorithm.
-- Destination Mapping between 2 Nodes.
-- The Travelling Salesman Algorithm using the:
-    - Nearest Neighbour Heuristic
-    - Cheapest Insertion Heuristic
+- Dijkstra's Greedy Algorithm: To find the shortest paths from one node to another.
+- Destination Mapping: The shortest individual paths from one node to all nodes.
+- The Travelling Salesman Algorithm using the following heuristics:
+    - Nearest Neighbour: Chooses the closest unvisited neighbouring node at every subtour to build a path. Most optimal with few nodes and has a low runtime.
+    - Cheapest Insertion: Inserts nodes within existing ones to minimise the net travel cost. Highly optimal, but has a high runtime.
 
 ### Optimisation
 - Contains the logic code for 2-opt and 3-opt tour improvement algorithms, which can be applied on any of the TSP algorithms.
@@ -54,17 +52,16 @@ Contains functions used throughout the project:
 - _arguments_ provides the command line arguments.
 - _shortestPathLength_ provides an integer shortest length between two nodes.
 - _shortestPath_ provides the edges travelled along this path, in the form of a list of tuples.
-- _clear\_terminal_ removes any leftover code statements, making it clearer, especially when rerunning TSP Solver multiple times.
+- _clearTerminal_ removes any leftover code statements, making it clearer, especially when rerunning TSP Solver multiple times.
 - _customLabels_ to rename nodes on the graph. Set the variable ```custom``` to True or False accordingly.
 
 ### Check
 Error checks different inputs:
-- The Number of Edges: ensures a minimum of 2.
-- The Source Node: must be >= 0 or =< n -1.
-- The Destination Node: must not be equal to the source node.
+- The Number of Edges: Ensures a minimum of 2.
+- The Source Node: Must be >= 0 or =< n -1.
+- The Destination Node: Must not be equal to the source node.
 - The Graph: Must be either undirected (1) or directed (2)
-- Mode Check: checks the mode is either 1 or 2.
-- Seed Check: It must be an integer >= 0, else defaults it to 0.
+- Mode Check: Checks the mode is either 1 or 2.
 - Layout Check: Ensures the layout is between 1 - 4.
 
 ### Layouts
@@ -73,7 +70,7 @@ Contains the code for 5 layouts, which arrange the nodes neatly:
 - Circular
 - Square
 - Hexagonal
-- Manual Layout based on user input.
+- File Entry (Manual File based on user input).
 
 ## DataSample
 ### Visualization
@@ -81,3 +78,9 @@ Contains the code for 5 layouts, which arrange the nodes neatly:
 
 ### Datasets
 - Contains datasets (both custom and synthetic benchmark ones) which are used by ```visualization.py```.
+    - C1k.1 and E1k.1 are synthetic datasets from:
+    http://archive.dimacs.rutgers.edu/Challenges/TSP/results.html#Fast%20Tour%20Construction.
+    - Test contains arbitary data points which I utilised for testing purposes.
+    - Mumbai contains the actual geographical coordinates of locations in the city of Mumbai, India.
+- Each dataset has 3 rows which contain its name, additional comments and the number of nodes.
+- The remaining _n_ rows hold data the the format: index  x  y

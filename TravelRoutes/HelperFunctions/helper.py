@@ -26,9 +26,6 @@ def maxEdges(n):
                 edges.append((i, j, {'weight' : weight}))
     return edges
 
-arguments = [('-n', '--n'), ('-g', '--graph'), ('-m', '--mode'), ('-r', '--routes'),('-l', '--layout'),
-             ('-s', '--sourceNode'), ('-d', '--destNode'), ('-seed', '--seed')]
-
 def shortestPathLength(G, src, dest):
     try:
         return nx.shortest_path_length(G, source=src, target=dest, weight='weight')
@@ -45,12 +42,12 @@ def shortestPath(G, src, dest):
     except nx.NetworkXNoPath:
             return None, float('inf')
 
-def clear_terminal():
+def clearTerminal():
     os.system('cls' if os.name == 'nt' else 'clear')
 
 def customLabels(n=-1):
     custom = False
-    nodes_list = ["Prabhadevi", "Mahalaxmi", "Worli", "Andheri", "Bandra", "Juhu", "Powai", "Goregaon", "Borivali", "Churchgate", "Dadar", "Sion", "Matunga", "Thane", "Chembur"]
+    nodes_list = ["Prabhadevi", "Mahalaxmi", "Andheri", "Bandra", "Juhu","Churchgate","Sion", "Matunga", "Santacruz"]
     if n == -1: n = len(nodes_list)
     node_labels = {i: nodes_list[i] for i in range(min(n, len(nodes_list)))}
     return custom, node_labels

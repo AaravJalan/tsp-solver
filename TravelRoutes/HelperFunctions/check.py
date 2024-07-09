@@ -1,8 +1,5 @@
 # Checks the mode user wishes to use.
-def mode(mode, graphType, routes):
-    try: mode = int(mode)
-    except: 
-        mode = -1
+def mode(graphType, routes, mode = -1):
     if graphType == 1:
         while mode != 1 and mode != 2 and mode != 3:
             m1 = ["One-to-All", "All-to-All"]
@@ -13,47 +10,34 @@ def mode(mode, graphType, routes):
     return mode
 
 # Checks the graph user wishes to use.
-def graph(graph):
-    try: graph = int(graph)
-    except: graph = -1
+def graph(graph = -1):
     while graph < 1 or graph > 2:
         graph = int(input("\nSearch Type (1: Undirected, 2: Directed): "))
     return graph
 
 # Checks the source node user wishes to use.
-def sourceNode(sourceNode, n, mode, routes):
+def sourceNode(n, mode, routes, sourceNode = -1):
     if mode == 1 and routes == 2:
         return 0
-    try: sourceNode = int(sourceNode)
-    except: sourceNode = -1
     while sourceNode >= n or sourceNode < 0:
         sourceNode = int(input(f"\nSource Node (0 - {n-1}): "))
     return sourceNode
 
 # Checks the destination node user wishes to use.
-def destNode(destNode, mode, n, sourceNode):
+def destNode(mode, n, sourceNode, destNode = -1):
     if mode == 2:
-        try: destNode = int(destNode)
-        except: destNode = -1
         while destNode >= n or destNode < 0 or destNode == sourceNode:
             destNode = int(input(f"\nDestination Node (0 - {n-1}): "))
         return destNode
 
 # Checks the number of nodes user wishes to use.  
-def node(n):
-    try: n = int(n)
-    except: n = -1
+def node(n = -1):
     while n < 2:
         n = int(input("\nNumber of Nodes (2+): "))
     return n
 
-# Checks if seed is valid else sets a default value.
-def seed(seed):
-    try: return int(seed)
-    except: return 0
-
 # Checks the layout user wishes to use.
-def layout(val, graphType):
+def layout(graphType, val=-1):
     if graphType == 2:
         max = 4
         func = ""
@@ -68,11 +52,17 @@ def layout(val, graphType):
     return val
 
 # Checks the route type (Sparse or Connected that the user wishes to use).
-def routeType(routes):
+def routeType(routes = -1):
     while routes != 1 and routes != 2:
         routes = int(input("\nRoute Type (1: Sparse, 2: Connected): "))
     return routes
 
+def custom(custom=None):
+    while custom != "Y" and custom != "N":
+        custom = input("\nReal World Nodes (Y/N): ").upper()
+    return True if custom == "Y" else False
+        
+    
 def solver(type=-1):
     while type < 0 or type >2:
         type = int(input("\nCompare All (0) | Nearest Neighbour (1) | Cheapest Insertion (2): "))

@@ -4,12 +4,12 @@ import networkx as nx
 def selectLayout(G, n, layout, seed):
     if layout == 1: pos = nx.spring_layout(G, seed=seed)
     elif layout == 2: pos = nx.circular_layout(G)
-    elif layout == 3: pos = squaregrid_layout(n)
-    else: pos = hexgrid_layout(n)
+    elif layout == 3: pos = squaregridLayout(n)
+    else: pos = hexgridLayout(n)
     print("")
     return pos
 
-def hexgrid_layout(n):
+def hexgridLayout(n):
     side_length = ceil(sqrt(n))
     pos = {}
     index = 0
@@ -24,7 +24,7 @@ def hexgrid_layout(n):
                 index += 1
     return pos
 
-def squaregrid_layout(n):
+def squaregridLayout(n):
     side_length = ceil(sqrt(n))
     pos = {}
     index = 0
