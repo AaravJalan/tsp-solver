@@ -97,17 +97,17 @@ def travelPaths(graphType, n, mode, sourceNode, destNode, layout, seed, routes, 
         # Node Labels
         custom, node_labels = customLabels(n)
         if custom:
-            nx.draw_networkx_labels(G, pos, labels=node_labels, font_size=15,font_family="tahoma")
+            nx.draw_networkx_labels(G, pos, labels=node_labels, font_weight="bold", font_size=15,font_family="tahoma")
         else:
             nx.draw_networkx_labels(G, pos, font_size=15, font_weight="bold", font_family="sans-serif")
 
         # Edge Weight Labels
-        nx.draw_networkx_edge_labels(G, pos, edgeLabels, font_size=10)
+        nx.draw_networkx_edge_labels(G, pos, edgeLabels, font_size=7, bbox=dict(facecolor='white', edgecolor='none', pad=0.2))
 
         # Plotting Graph
         plt.gca().margins(0.06)
         plt.axis("on")
-        plt.title("Travelling Salesman Problem")
+        plt.title("Traveling Salesman Problem")
         plt.tight_layout()
 
         fig = plt.gcf()
