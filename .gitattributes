@@ -1,1 +1,3 @@
-*.roff linguist-detectable=false
+# Dataset files use .1/.N suffixes that Linguist mistakes for man pages (Roff)
+TravelRoutes/DataSample/Datasets/** linguist-vendored
+*.1 linguist-detectable=false
