@@ -1,8 +1,13 @@
+"""
+Handles printing of calculated routes and distances to the terminal.
+Formats paths and distances in easy-to-read tables and statements, and provides 
+execution times for optimizations like 2-opt and 3-opt.
+"""
 from prettytable import PrettyTable
 from colorama import Fore, Style
 import time, sys
 from HelperFunctions.helper import customLabels
-from PathAlgorithms.optimisation import twoOpt, threeOpt, totalDistance
+from PathAlgorithms.optimization import twoOpt, threeOpt, totalDistance
 
 custom, node_labels = customLabels()
 

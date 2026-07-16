@@ -1,3 +1,8 @@
+"""
+Backend logic for finding routes using shortest-path and heuristic algorithms. Includes Dijkstra's
+algorithm for finding shortest paths and heuristic search algorithms (Nearest Neighbor and Cheapest
+Insertion) for estimating Travelling Salesman Problem solutions.
+"""
 import sys
 from colorama import Fore, Style
 from PathDisplay.pathPrint import printSolution, printPath, displayPath
@@ -9,35 +14,35 @@ class Graph():
     def __init__(self, vertices):
         self.V = vertices
         self.graph = [[0 for c in range(vertices)] for r in range(vertices)]
- 
+
     # Finds the vertex with the minimum distance value, from the set of vertices
     # not yet included in shortest path tree
     def minDistance(self, dist, sptSet):
- 
+
         # Initialize minimum distance for next node
         min = sys.maxsize
- 
+
         # Search not nearest vertex not in the
         # shortest path tree
         for u in range(self.V):
             if dist[u] < min and sptSet[u] == False:
                 min = dist[u]
                 min_index = u
-                
+
         try: return min_index
         except: return -1
- 
+
     # Function that implements Dijkstra's single source shortest path algorithm.
     def dijkstra(self, src, target=None):
         dist = [sys.maxsize] * self.V
         dist[src] = 0
         sptSet = [False] * self.V
         parent = [-1] * self.V
- 
+
         for _ in range(self.V):
             x = self.minDistance(dist, sptSet)
             sptSet[x] = True
- 
+
             for y in range(self.V):
                 if self.graph[x][y] > 0 and sptSet[y] == False and \
                         dist[y] > dist[x] + self.graph[x][y]:
@@ -55,7 +60,7 @@ class Graph():
                 paths.append(path[::-1])
             included = printSolution(dist, paths, self.V, self.graph)
             return [(parent[i],i) for i in range(0, self.V)], included
-        
+
         # Returns the shortest path from the source to the target.
         else:
             node = target
@@ -66,11 +71,11 @@ class Graph():
                 path.append(parent[node])
                 node = parent[node]
             print(Fore.GREEN + f"\nThe Shortest Distance: {round(dist[target],2)}\n")
-            print(Fore.BLUE + f"The Path Taken: {displayPath(path[::-1])}") 
+            print(Fore.BLUE + f"The Path Taken: {displayPath(path[::-1])}")
             print(Style.RESET_ALL)
             return edges[::-1]
-    
-    # Helper Function to Find Nearest Neighbouring Nodes
+
+    # Helper Function to Find Nearest Neighboring Nodes
     def iterate(self, tick):
         closest = sys.maxsize
         nearest = -1
@@ -85,12 +90,12 @@ class Graph():
         self.distanceTravelled += closest
         if (self.src, nearest) not in self.visitedEdges:
             self.visitedEdges.append((self.src, nearest))
-        self.path.append(nearest)    
+        self.path.append(nearest)
         self.visited[nearest] += 1
         self.src = nearest
 
     # Function to Find Paths to All Nodes and Back
-    def nearestNeighbour(self, src, routes, opt):
+    def nearestNeighbor(self, src, routes, opt):
         source = self.src = src
         self.visited = [0] * self.V
         self.visitedEdges = []
@@ -100,7 +105,7 @@ class Graph():
         self.routes = routes
         print("")
         start_time = time.time()
-        with tqdm(total=self.V, desc="Nearest Neighbour Algorithm", unit="node") as pbar:
+        with tqdm(total=self.V, desc="Nearest Neighbor Algorithm", unit="node") as pbar:
             while min(self.visited) == 0:
                 self.iterate(0)
                 pbar.update(1)
@@ -114,13 +119,13 @@ class Graph():
             self.returnPath = self.path
             self.returnPath.insert(0, path[-1])
             printPath(path, self.graph, opt, self.routes, self.returnPath)
-            
+
         else:
             self.visitedEdges.append((path[-1],source))
             self.distanceTravelled += self.graph[path[-1]][source]
             path.append(source)
             printPath(path, self.graph, opt)
-    
+
         return self.visitedEdges
 
     def cheapestInsertion(self, source, opt):
@@ -149,7 +154,7 @@ class Graph():
                         increase = (self.graph[prev_node][node] +
                                     self.graph[node][next_node] -
                                     self.graph[prev_node][next_node])
-                        
+
                         if increase < min_distance:
                             min_distance = increase
                             best_node = node

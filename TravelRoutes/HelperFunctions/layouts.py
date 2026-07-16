@@ -1,3 +1,7 @@
+"""
+Manages the spatial layouts of nodes in the graph visualization.
+Provides functions to arrange nodes in random, circular, square grid, or hexagonal grid layouts.
+"""
 from math import sqrt, ceil
 import networkx as nx
 

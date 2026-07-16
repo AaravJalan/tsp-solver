@@ -1,3 +1,7 @@
+"""
+Provides error-checking logic for user inputs in the terminal mode. Ensures graph types, nodes,
+layouts, and chosen algorithms are within valid ranges before proceeding with calculations.
+"""
 # Checks the mode user wishes to use.
 def mode(graphType, routes, mode = -1):
     if graphType == 1:
@@ -30,7 +34,7 @@ def destNode(mode, n, sourceNode, destNode = -1):
             destNode = int(input(f"\nDestination Node (0 - {n-1}): "))
         return destNode
 
-# Checks the number of nodes user wishes to use.  
+# Checks the number of nodes user wishes to use.
 def node(n = -1):
     while n < 2:
         n = int(input("\nNumber of Nodes (2+): "))
@@ -45,7 +49,7 @@ def layout(graphType, val=-1):
         max = 5
         func = ", 5: File Input"
     try: val = int(val)
-    except: 
+    except:
         val = -1
     while val < 0 or val > max:
         val = int(input(f"\nLayout (1: Random, 2: Circular, 3: Square, 4: Hex{func}): "))
@@ -61,9 +65,9 @@ def custom(custom=None):
     while custom != "Y" and custom != "N":
         custom = input("\nReal World Nodes (Y/N): ").upper()
     return True if custom == "Y" else False
-        
-    
+
+
 def solver(type=-1):
     while type < 0 or type >2:
-        type = int(input("\nCompare All (0) | Nearest Neighbour (1) | Cheapest Insertion (2): "))
+        type = int(input("\nCompare All (0) | Nearest Neighbor (1) | Cheapest Insertion (2): "))
     return type

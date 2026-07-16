@@ -1,3 +1,8 @@
+"""
+Main entry point for the TSP Solver graphical user interface (GUI).
+Provides an interactive tkinter applet to select graph types, nodes, layouts, and algorithms,
+allowing users to visualize different Travelling Salesman Problem solutions.
+"""
 import tkinter as tk
 from tkinter import ttk, messagebox
 from HelperFunctions.helper import clearTerminal
@@ -79,7 +84,7 @@ class TSPApp:
         # Solver
         self.solver_label = ttk.Label(frame, text="Solver:")
         self.solver_var = tk.StringVar()
-        solver_options = ["0: Compare All", "1: Nearest Neighbour", "2: Cheapest Insertion"]
+        solver_options = ["0: Compare All", "1: Nearest Neighbor", "2: Cheapest Insertion"]
         self.solver_combobox = ttk.Combobox(frame, textvariable=self.solver_var, values=solver_options, state="readonly")
         self.solver_label.grid(row=9, column=0, sticky=tk.W)
         self.solver_combobox.grid(row=9, column=1, sticky=tk.E)
@@ -87,7 +92,7 @@ class TSPApp:
 
         # OPT Checkbox
         self.opt_checkbutton = ttk.Checkbutton(frame)
-        self.opt_label = ttk.Label(frame, text="Optimise")
+        self.opt_label = ttk.Label(frame, text="Optimize")
         self.opt_var = tk.BooleanVar(value=False)
         self.opt_checkbutton.config(variable=self.opt_var)
         self.opt_label.grid(row=10, column=0, sticky=tk.W)

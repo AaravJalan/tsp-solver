@@ -1,5 +1,9 @@
+"""
+Contains logic for post-processing and tour improvement algorithms.
+Implements 2-opt and 3-opt optimization algorithms to iteratively refine and improve 
+the travel cost of generated Travelling Salesman Problem routes.
+"""
 from tqdm import tqdm
-
 ## Finds the total distance travelled along a path in a given graph.
 def totalDistance(path, graph):
     total_distance = 0
@@ -7,7 +11,7 @@ def totalDistance(path, graph):
         total_distance += graph[path[i]][path[i + 1]]
     return total_distance
 
-## Optimisation problems attempt to find the path with the shortest travel cost.
+## Optimization problems attempt to find the path with the shortest travel cost.
 ## 2-opt optimization algorithm for path improvement.
 def twoOpt(path, graph):
     bestPath = path
@@ -22,7 +26,7 @@ def twoOpt(path, graph):
                 for j in range(i + 1, len(bestPath) - 1):
                     if j - i == 1: continue # Skip adjacent edges
                     new_path = bestPath[:i] + bestPath[i:j][::-1] + bestPath[j:]
-                    ## If the travel cost is less, the path is more optimised and better.
+                    ## If the travel cost is less, the path is more optimized and better.
                     if totalDistance(new_path, graph) < totalDistance(bestPath, graph):
                         bestPath = new_path
                         improved = True
@@ -44,7 +48,7 @@ def threeOpt(path, graph):
                 for j in range(i + 1, n - 2):
                     for k in range(j + 1, n - 1):
                         new_path = reverseThreeSegment(bestPath, i, j, k)
-                        ## If the travel cost is less, the path is more optimised and better.
+                        ## If the travel cost is less, the path is more optimized and better.
                         if totalDistance(new_path, graph) < totalDistance(bestPath, graph):
                             bestPath = new_path
                             improved = True

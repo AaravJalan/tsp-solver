@@ -1,3 +1,7 @@
+"""
+Alternative main entry point for the TSP Solver that runs entirely in the terminal.
+Allows users to input values interactively via the command line instead of using the GUI.
+"""
 from HelperFunctions import check
 from HelperFunctions.helper import clearTerminal
 from PathDisplay.pathPlot import travelPaths

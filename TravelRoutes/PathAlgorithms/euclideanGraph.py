@@ -1,3 +1,8 @@
+"""
+Handles the generation of Euclidean graphs and adjacency matrices.
+Provides functions to generate graphs with nodes positioned using various layouts,
+and calculates the Euclidean distances between nodes as edge weights.
+"""
 import networkx as nx
 import numpy as np
 from DataSample.visualization import visualize

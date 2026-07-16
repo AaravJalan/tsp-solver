@@ -1,3 +1,7 @@
+"""
+Contains helper functions. Includes utilities for generating random edges, calculating shortest paths
+using networkx, clearing terminal screen, and assigning custom labels to nodes based locations.
+"""
 from random import randint
 import networkx as nx
 import os

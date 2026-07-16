@@ -1,4 +1,8 @@
-import numpy as np 
+"""
+Handles data loading and visualization setup for real-world datasets. Reads geographic
+coordinate data from files to set the positions of nodes in the graph.
+"""
+import numpy as np
 
 prefix = "TravelRoutes/DataSample/Datasets/"
 filenames = [f"{prefix}C1k.1", f"{prefix}E1k.1", f"{prefix}Test", f"{prefix}Mumbai"]

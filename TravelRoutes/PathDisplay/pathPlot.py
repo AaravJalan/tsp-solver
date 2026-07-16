@@ -1,3 +1,8 @@
+"""
+Handles the visual representation of graphs, nodes, and calculated routes.
+Uses matplotlib and networkx to plot Euclidean graphs and display the optimal 
+paths computed by the search algorithms in a GUI window.
+"""
 import matplotlib.pyplot as plt
 import networkx as nx
 from PathAlgorithms.euclideanGraph import euclideanGraph, printSolution
@@ -47,11 +52,11 @@ def travelPaths(graphType, n, mode, sourceNode, destNode, layout, seed, routes, 
     # Running Optimising Algorithm to Find a Path To Travel All Nodes & Back
     elif mode == 3: 
         if solver == 1:
-            edgeList = g.nearestNeighbour(sourceNode, routes, opt)
+            edgeList = g.nearestNeighbor(sourceNode, routes, opt)
         elif solver == 2:
             edgeList = g.cheapestInsertion(sourceNode, opt)
         elif solver == 0:
-            g.nearestNeighbour(sourceNode, routes, opt)
+            g.nearestNeighbor(sourceNode, routes, opt)
             g.cheapestInsertion(sourceNode, opt)
             edgeList = []
     
